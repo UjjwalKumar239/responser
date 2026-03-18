@@ -1,78 +1,47 @@
-This is the Official repository of **Spring AI Masters** from EmbarkX.com
+# 📩 Responser: AI-Powered Email Assistant
 
-# The Ultimate Java and Spring Boot Mastery
+**Responser** is a specialized Spring Boot backend service that automates email drafting using Google's **Gemini AI**. It is designed to integrate seamlessly with browser environments to provide instant, tone-specific email replies.
 
-Welcome to your one-stop-shop for mastering Java and Spring Boot! This repository offers a comprehensive learning experience with high-quality resources and community support. Dive into over 150+ hours of premium content, with everything you need to excel at Java and Spring Boot development.
+---
 
-## 🎓 Learning Roadmap
+## 🌟 Project Overview
 
-Most of the courses below are available in **Udemy For Business**, so if you have subscription - you can get FREE access.
-Here’s a structured path to enhance your skills with detailed courses available:
+The goal of **Responser** is to eliminate "blank page syndrome" when replying to emails. Whether you need to stay strictly professional or keep it casual, the app analyzes the incoming message and generates a tailored response in seconds.
 
-1. **[Spring Boot By Building Complex Projects Step by Step](https://link.embarkx.com/spring-boot) (50+ Hours of Content)**
-2. **[Master Spring Boot Microservices](https://link.embarkx.com/microservices) (23+ Hours of Content)**
-3. **[Learn Java with 60+ Hours of Content](http://link.embarkx.com/java) (60+ Hours of Content)**
-4. **[Master Spring Security with React JS + OAuth2](https://link.embarkx.com/spring-security) (34+ Hours of Content)**
-5. **[Master IntelliJ IDEA](http://link.embarkx.com/intellij) (3+ Hours of Content)**
+### 🛠️ Key Functionalities
+* **Contextual Awareness:** Analyzes the body of an original email to provide relevant answers.
+* **Tone Customization:** Users can request specific tones such as *Professional*, *Friendly*, or *Concise*.
+* **Subject-Free Drafting:** Focuses purely on the email body for easy "copy-paste" or auto-insertion.
+* **Browser Integration Ready:** Built with a RESTful API structure, perfect for Chrome/Edge extension backends.
 
+---
 
-## 🌟 With All Our Courses You Gain Access To
+## 🏗️ Technical Architecture
 
-- 📝 **Notes:** Detailed and downloadable notes to accompany each lesson.
-- 💻 **Source Code:** Full access to the source code used in the tutorials.
-- 🤔 **Doubt Solving:** Responsive instructor and community support.
-- 🎥 **High-Quality HD Videos:** Easy to understand, high-definition video tutorials.
-- 🔄 **Free Lifetime Updates:** Continuous updates to course content at no extra cost.
+The application follows a standard Spring Boot service-oriented architecture:
 
-## 📚 Why Choose This Mastery Series?
+1.  **Controller Layer:** Handles incoming POST requests containing the email content and desired tone.
+2.  **Service Layer (`EmailGeneratorService`):** * Constructs a specialized prompt for the LLM.
+    * Manages the API communication via **Spring WebClient**.
+    * Parses complex JSON responses from the AI.
+3.  **AI Engine:** Powered by the `gemini-1.5-flash` model for high-speed, high-accuracy text generation.
 
-With this series, you're not just learning; you're preparing to dominate the field of Java and Spring Boot development. Our structured learning path ensures that you build your skills progressively, with each course designed to build on the knowledge gained from the previous one.
+---
 
-### Join Us Now!
+## 🚀 Getting Started
 
-Start your journey today to become a master at Java and Spring Boot. Our community and expert instructors are here to support your learning every step of the way. **Enroll and start building your future, today!**
+### 1. Prerequisites
+* Java 21 or higher
+* Maven 3.6+
+* A Google Cloud API Key for Gemini AI
 
+### 2. Configuration
+Create/Update your `src/main/resources/application.properties` file:
 
+```properties
+# Gemini API Configuration
+gemini.api.url=[https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent](https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent)
+gemini.api.key=YOUR_ACTUAL_API_KEY_HERE
 
-
-
-# Usage Policy for Course Materials
-
-## Instructor Information
-
-**Instructor:** Faisal Memon  
-**Company:** [EmbarkX.com](http://www.embarkx.com)
-
-## Policy Overview
-
-This document outlines the guidelines and restrictions concerning the use of course materials provided by EmbarkX, including but not limited to PDF presentations, code samples, and video tutorials.
-
-### 1. Personal Use Only
-
-The materials provided in this course are intended for **your personal use only**. They are to be used solely for the purpose of learning and completing this course.
-
-### 2. No Unauthorized Sharing or Distribution
-
-You are **not permitted** to share, distribute, or publicly post any course materials on any websites, social media platforms, or other public forums without prior written consent from the instructor.
-
-### 3. Intellectual Property
-
-All course materials are protected by copyright laws and are the intellectual property of Faisal Memon and EmbarkX. Unauthorized use, reproduction, or distribution of these materials is **strictly prohibited**.
-
-### 4. Reporting Violations
-
-If you become aware of any unauthorized sharing or distribution of course materials, please report it immediately to [embarkxofficial@gmail.com](mailto:embarkxofficial@gmail.com).
-
-### 5. Legal Action
-
-We reserve the right to take legal action against individuals or entities found to be violating this usage policy.
-
-## Thank You
-
-Thank you for respecting these guidelines and helping us maintain the integrity of our course materials.
-
-## Contact Information
-
-- **Email:** [embarkxofficial@gmail.com](mailto:embarkxofficial@gmail.com)
-- **Website:** [www.embarkx.com](http://www.embarkx.com)
-
+# Server Port
+server.port=8080
